@@ -28,10 +28,14 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 // TODO: Implement asset caching
 registerRoute(
+	// Match requests whose destination is "style" or "script"
 	({ request }) => request.destination === "style" || request.destination === "script",
+	// CacheFirst strategy is picked
 	new CacheFirst({
+		// Give cache a name
 		cacheName: "assets-cache",
 		plugins: [
+			// cache only responses with a status of 200
 			new CacheableResponsePlugin({
 				statuses: [0, 200],
 			}),
