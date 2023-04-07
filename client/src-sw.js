@@ -32,7 +32,6 @@ registerRoute(
 	new CacheFirst({
 		cacheName: "assets-cache",
 		plugins: [
-			// Only cache 200 responses
 			new CacheableResponsePlugin({
 				statuses: [0, 200],
 			}),

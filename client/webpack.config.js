@@ -20,7 +20,7 @@ module.exports = () => {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: "./index.html",
-				title: "TODOs List",
+				title: "Jate",
 			}),
 			new InjectManifest({
 				swSrc: "./src-sw.js",
@@ -36,7 +36,8 @@ module.exports = () => {
 				publicPath: "./",
 				icons: {
 					src: path.resolve("src/images/logo.png"),
-					sizes: [120, 152, 167, 180, 1024],
+					sizes: [96, 120, 152, 167, 180, 1024],
+					destination: path.join("assets", "icons"),
 				},
 			}),
 		],

@@ -18,12 +18,13 @@ export const putDb = async (content) => {
 	const jateDb = await openDB("jate", 1);
 	const tx = jateDb.transaction("jate", "readwrite");
 	const store = tx.objectStore("jate");
-	const request = store.add({ value: content });
+	const request = store.put({ id: 1, value: content });
 	try {
 		const result = await request;
 		console.log("🚀 - data saved to the database", result);
 	} catch (err) {
 		console.error("putDb not implemented", err);
+		throw new Error("Failed to save content to the database");
 	}
 };
 
@@ -33,13 +34,14 @@ export const getDb = async () => {
 	const jateDb = await openDB("jate", 1);
 	const tx = jateDb.transaction("jate", "readonly");
 	const store = tx.objectStore("jate");
-	const request = store.getAll();
+	const request = store.get(1);
 	try {
 		const result = await request;
-		console.log("result.value", result);
-		return result;
+		console.log("result", result);
+		return result?.value;
 	} catch (err) {
 		console.error("getDb not implemented", err);
+		throw new Error("Failed to get content from the database");
 	}
 };
 
